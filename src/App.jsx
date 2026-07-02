@@ -2,29 +2,29 @@ import { useState } from "react";
 import { supabase } from "./supabaseClient";
 
 const GLOSSARY = {
-  "Flourishing":"The state where connection with others, genuine enjoyment, and a sense of forward motion are all present and working together. The wellspring.",
-  "Awakening":"An established return — awareness and energy coming back online after difficulty. The turn has happened and is holding.",
-  "Anguish":"The deepest form of difficult experience — where pain is acute, pathways feel blocked, and the usual responses are unavailable. Requires safety and care before anything else.",
-  "Despair":"The floor. Both capacity and hope have collapsed simultaneously. Requires contact and care before anything else.",
-  "Ambivalence":"Holding two equally important directions simultaneously, unable to move toward either. Not indecision — both things genuinely matter.",
-  "Adrift":"The specific absence of joy, pleasure, or gratitude — not crisis, not suffering, but a flatness that signals something genuine is missing.",
-  "Stuck":"Movement has stopped despite available capacity. Something is blocking it — not inability but reluctance.",
-  "Lost Connection":"Separation from meaningful relationship. The wound that needs connection to heal.",
-  "Self-Doubt":"The experience of moving backwards — losing ground or confidence that was previously present.",
-  "Disheartened":"Sustained joylessness. Not sadness, which is acute — disheartened is chronic. The absence of delight over time.",
-  "Sealed":"Complete protective closure. An intelligent response to sustained threat — but a tent, not a permanent structure.",
-  "Numbing":"The reduction of emotional signal to manageable levels. A survival strategy — dampening feeling to survive overwhelm.",
-  "Embattled":"Active defence against perceived threat. Consuming most available energy in fighting rather than moving.",
-  "Grief":"The natural response to genuine loss. Not a disorder — a process that cannot be rushed or bypassed.",
-  "Sanctuary":"A protected space created deliberately to allow recovery. Not hiding — intelligent withdrawal.",
-  "Hibernation":"Deep inward rest. All available energy drawn toward restoration. Like winter — preparation for return.",
-  "Capacity to deal with this":"How much you actually have available right now — after accounting for everything else already in use.",
-  "Hope":"A force with direction and magnitude. Both are required. Direction without magnitude is paralysis. Magnitude without direction is misdirected energy.",
-  "Meaning":"The sense that what you are experiencing connects to something that matters.",
-  "Certainty":"Understanding of what is happening and what to do next. Uncertainty drains capacity.",
-  "Shame":"The belief that you are fundamentally flawed — distinct from guilt, which is about what you did.",
-  "Driving force":"The underlying mechanism that keeps a person in their current position.",
-  "Witnessing":"Being seen without being fixed or advised.",
+  "Flourishing":"The condition where genuine connection with others, enjoyment of the world, and forward motion are all present and working together. Not a permanent state — a living condition that needs tending.",
+  "Awakening":"The established return after difficulty. All three channels activating. Not yet Flourishing — still carrying the wound — but turned toward the light for the first time and holding that direction.",
+  "Anguish":"The condition of acute pain where pathways feel blocked and capacity is insufficient to sustain recovery. Not weakness — the genuine absence of the conditions that make movement possible. Requires safety before anything else.",
+  "Despair":"The floor. Both the Resilience Reserve and Hope have collapsed simultaneously. Requires contact — not effort.",
+  "Detached":"The Relational channel is intact but not currently engaged. Capacity for genuine connection is present — but contact is absent. Not wounded. Not withdrawn in the Shelter sense. Simply not in relation.",
+  "Adrift":"The Agency channel is capable but not currently producing. Like a field left fallow — capacity present, activation absent. Not damaged. Simply not generating.",
+  "Stuck":"The Experiential channel is available but not animating. Wonder is present in principle but not producing movement. Something is blocking — not inability but inertia.",
+  "Lost Connection":"The Relational wound. The bond with others has been damaged or lost. The channel that needs Connection as its medicine.",
+  "Disheartened":"The Experiential wound. The capacity for genuine receptive engagement with the world has been attacked. The channel that needs Wonder as its medicine.",
+  "Self-Doubt":"The Agency wound. The capacity to act, produce outcomes, and move forward has been erased through accumulated damaging self-evaluation. The channel that needs Growth as its medicine.",
+  "Closed":"Complete protective closure of the Relational channel. An intelligent Shelter response to sustained threat — the system conserving what remains. A tent, not a permanent structure.",
+  "Guarded":"The Shelter response of the Agency channel — redirecting contact with the wound rather than facing it directly. Not consumed by the difficulty, not collapsed, but not through it. The wound is being managed at arm's length.",
+  "Embattled":"The Shelter response of the Experiential channel — active defence against an external force consuming most available energy. The fight is real. The cost is the capacity that would otherwise be available for recovery.",
+  "Grief":"The Healing response of the Relational channel. The natural and necessary process of integrating genuine loss. Not a disorder — the work itself. It has its own timeline and cannot be shortened by effort.",
+  "Sanctuary":"The Healing response of the Experiential channel. A protected space created deliberately — not hiding, but creating the conditions where recovery of the Experiential wound becomes possible.",
+  "Hibernation":"The Healing response of the Agency channel. Deep inward rest — all available energy drawn toward restoration of capacity and self-worth. Like winter: preparation for return, not absence of life.",
+  "Capacity to deal with this":"The Resilience Reserve available right now — after accounting for everything already committed to navigating all currently active difficulties simultaneously. Available capacity is often significantly less than total capacity.",
+  "Hope":"A directional force with two components: direction (knowing which way to move) and magnitude (the energy to act on that direction). Both are required. Direction without magnitude is paralysis. Magnitude without direction is misdirected energy.",
+  "Meaning":"The sense that what you are experiencing connects to something that matters. One of the forces that can provide vertical lift directly through the Renewal Zone.",
+  "Certainty":"Understanding of what is happening and what to do next. Uncertainty consumes committed capacity — naming certainties, however small, releases it.",
+  "Shame":"Guilt misattributed from action to identity. Guilt says 'I did something wrong' — processable, correctable. Shame says 'I am wrong' — identity-level, unbounded, with no corrective action available. The intervention is attribution correction, not self-improvement.",
+  "Driving force":"The underlying force or mechanism determining why a person is in their current position and what would need to change for movement to become possible.",
+  "Witnessing":"Being genuinely seen without being fixed, advised, or assessed. One of the most restorative acts available — particularly in Grief and Anguish.",
 };
 
 function Term({ term, children, onOpen }) {
@@ -37,18 +37,18 @@ function Term({ term, children, onOpen }) {
 
 const WOUNDS = [
   {id:"relational",   label:"Relational",     prompt:"My struggle is primarily about people or relationships.", tags:["Loss","Rejection","Betrayal","Loneliness","Disconnection","Conflict"]},
-  {id:"self",         label:"Self-Assessment", prompt:"My struggle is primarily about how I see myself.",        tags:["Failure","Shame","Identity","Confidence","Self-worth","Competence"]},
-  {id:"environmental",label:"Environmental",   prompt:"My struggle is primarily about my circumstances.",        tags:["Work","Health","Money","Circumstances","Stress","Uncertainty"]},
-  {id:"mixed",        label:"Mixed",           prompt:"Several areas feel equally important.", tags:[]},
+  {id:"self",         label:"Self-Assessment", prompt:"My struggle is primarily about how I see myself or what I am capable of.", tags:["Failure","Shame","Identity","Confidence","Self-worth","Competence"]},
+  {id:"environmental",label:"Environmental",   prompt:"My struggle is primarily about my circumstances or the world around me.", tags:["Work","Health","Money","Circumstances","Stress","Uncertainty"]},
+  {id:"mixed",        label:"Mixed",           prompt:"Several of these feel equally important right now.", tags:[]},
 ];
 
 const RESPONSES = [
-  {id:"facing",     label:"Facing",      prompt:"I am trying to deal with it directly."},
-  {id:"avoiding",   label:"Avoiding",    prompt:"I avoid thinking about it or engaging with it."},
-  {id:"fighting",   label:"Fighting",    prompt:"I feel angry, resistant or in conflict with it."},
-  {id:"withdrawing",label:"Withdrawing", prompt:"I pull away from people or opportunities."},
-  {id:"conserving", label:"Conserving",  prompt:"I feel I need to rest and protect my energy."},
-  {id:"numbing",    label:"Numbing",     prompt:"I distract myself from uncomfortable feelings."},
+  {id:"facing",     label:"Facing",      prompt:"I am turning toward it and trying to work through it."},
+  {id:"avoiding",   label:"Avoiding",    prompt:"I am steering around it — not engaging with it directly."},
+  {id:"fighting",   label:"Fighting",    prompt:"I feel angry, resistant, or in active conflict with it."},
+  {id:"withdrawing",label:"Withdrawing", prompt:"I am pulling back from people or situations connected to it."},
+  {id:"conserving", label:"Conserving",  prompt:"I am protecting my energy and resting as much as I can."},
+  {id:"numbing",    label:"Numbing",     prompt:"I am distracting myself from what I am feeling."},
 ];
 
 const CAP_ITEMS = [
@@ -73,7 +73,7 @@ function calculatePosition(wound, response, capacity) {
   if (tL && hL) return "anguish";
 
   // ── RELATIONAL WOUND — Connection path ──
-  // Reachable: Flourishing (via opening), Ambivalence, Disconnection, Grief, Sealed, Anguish, Despair
+  // Reachable: Flourishing (via opening), Detached, Disconnection, Grief, Sealed, Anguish, Despair
   if (wound==="relational") {
     if (response==="avoiding" && tL) return "sealed";
     if (response==="avoiding") return "disconnection";
@@ -81,30 +81,30 @@ function calculatePosition(wound, response, capacity) {
     if (response==="facing" || response==="conserving") return "grief";
     if (response==="numbing" && tL) return "sealed";
     if (response==="fighting" && tL) return "sealed";
-    if (tH && hH) return "ambivalence";
+    if (tH && hH) return "detached";
     return "disconnection";
   }
 
   // ── SELF WOUND — Growth path ──
-  // Reachable: Flourishing (via opening), Stagnation, Decline, Hibernation, Numbing, Anguish, Despair
+  // Reachable: Flourishing (via opening), Stagnation, Effacing, Hibernation, Deflection, Anguish, Despair
   if (wound==="self") {
-    if (response==="numbing") return "numbing";
+    if (response==="numbing") return "deflection";
     if (response==="conserving") return "hibernation";
     if (response==="avoiding" && tH && hH) return "stagnation";
-    if (response==="avoiding") return "decline";
-    if (sH) return "decline";
+    if (response==="avoiding") return "effacing";
+    if (sH) return "effacing";
     if (tH && hH) return "stagnation";
-    return "decline";
+    return "effacing";
   }
 
   // ── ENVIRONMENTAL WOUND — Delight path ──
-  // Reachable: Flourishing (via opening), Boredom, Misery, Sanctuary, Embattled, Anguish, Despair
+  // Reachable: Flourishing (via opening), Fallow, Misery, Sanctuary, Embattled, Anguish, Despair
   if (wound==="environmental") {
     if (response==="fighting" && tL) return "embattled";
     if (response==="fighting") return "embattled";
     if (response==="withdrawing") return "sanctuary";
     if (response==="conserving") return "sanctuary";
-    if (tH && hH) return "boredom";
+    if (tH && hH) return "fallow";
     return "misery";
   }
 
@@ -112,9 +112,9 @@ function calculatePosition(wound, response, capacity) {
   if (wound==="mixed") {
     if (tL && hL) return "anguish";
     if (response==="avoiding" && tL) return "sealed";
-    if (response==="numbing" && tL) return "numbing";
+    if (response==="numbing" && tL) return "deflection";
     if (response==="fighting" && tL) return "embattled";
-    if (tH && hH) return "ambivalence";
+    if (tH && hH) return "detached";
     return "misery";
   }
 
@@ -132,190 +132,191 @@ function calculateFulfilment(sustained) {
 }
 
 const POSITIONS = {
-  // ── FLOURISHING ────────────────────────────────────────────────────────
+  // ── FULFILMENT TERRITORY ───────────────────────────────────────────────
   flourishing:{
-    name:"Flourishing", label:"Flourishing", color:"#6a7a3a",
-    meaning:"Connection with others, genuine enjoyment, and a sense of forward motion are all present and working together right now. This is the wellspring — not a permanent state, but the one everything else points toward.",
-    why:"When all three of these are operating together they reinforce each other. Connection generates enjoyment. Enjoyment generates energy. Energy deepens connection. The cycle is alive.",
-    drivingForce:"What sustains this is genuine engagement across all three dimensions simultaneously. When any one of them goes quiet the others begin to follow.",
-    coreNeed:"Tending", coreNeedWhy:"Flourishing needs tending, not managing. The most important thing is not to take it for granted or to push past it toward the next goal.",
-    movement:"Be fully here", movementWhy:"The work here is not forward motion — it is presence. Full inhabitation of where you are.",
-    practice:"Take ten minutes today to name three things currently present: one genuine connection, one thing that genuinely delights you, and one way you are genuinely moving forward. Not a gratitude exercise — a genuine inventory of what is alive right now.",
-    reflection:"What would it mean to be fully present to where you are right now, rather than planning the next thing?",
+    name:"Flourishing", label:"Fulfilment Territory", color:"#6a7a3a",
+    meaning:"Genuine connection with others, receptive engagement with the world, and forward motion are all present and working together right now. This is the wellspring — not a permanent state, but the condition everything else points toward.",
+    why:"When all three channels are operating simultaneously they reinforce each other. Connection generates enjoyment. Enjoyment generates energy. Energy deepens connection. The cycle is self-sustaining while it runs.",
+    drivingForce:"All three channel forces — Connection, Wonder, and Growth — are operating above threshold simultaneously. What sustains this is genuine engagement across all three, not performance of any one of them. When one goes quiet, the others begin to follow.",
+    coreNeed:"Tending", coreNeedWhy:"Flourishing needs tending, not managing. The risk here is taking it for granted or pushing past it toward the next goal before inhabiting where you are.",
+    movement:"Be fully here", movementWhy:"The work here is not forward motion — it is presence. Full inhabitation of where you are rather than planning the next thing from within it.",
+    practice:"Take ten minutes today to name three things currently present: one genuine connection, one thing that genuinely engages or delights you, and one way you are genuinely moving forward. Not a gratitude exercise — a genuine inventory of what is alive right now.",
+    reflection:"What would it mean to be fully present to where you are right now, rather than reaching past it toward the next thing?",
   },
 
-  // ── AWAKENING ─────────────────────────────────────────────────────────
+  // ── RENEWAL ZONE ──────────────────────────────────────────────────────
   awakening:{
-    name:"Awakening", label:"Renewal", color:"#4a6a4a",
-    meaning:"You are in a genuine recovery. Something has turned and is holding. Awareness and energy are coming back online, and the improvement feels real rather than fragile. You are genuinely on your way.",
-    why:"The turn from difficulty has happened and is establishing itself. Each day the new direction holds, the pathways supporting it strengthen.",
-    drivingForce:"What keeps this moving forward is continued genuine engagement — small consistent acts that consolidate the recovery rather than testing it prematurely.",
-    coreNeed:"Forward momentum", coreNeedWhy:"The recovery is established enough to begin genuine forward motion — not just protecting what has returned but actively building.",
+    name:"Awakening", label:"Renewal Zone", color:"#4a6a4a",
+    meaning:"You are in genuine recovery. Something has turned and is holding. All three channels are beginning to activate. Not yet Flourishing — the wound is still present — but you are turned toward the light for the first time and holding that direction.",
+    why:"The crossing from Healing has happened and is establishing itself. Each day the new direction holds, the pathways supporting it strengthen. Hope has both direction and magnitude — you know which way and you have something to bring to it.",
+    drivingForce:"The acceleration function of the Renewal Zone — the channels are no longer treating the wound, they are rebuilding momentum. Connection, Wonder, and Growth are beginning to compound rather than compete. What keeps this moving is continued genuine engagement rather than testing it prematurely.",
+    coreNeed:"Forward momentum", coreNeedWhy:"The recovery is established enough to begin genuine forward motion — not just protecting what has returned but actively building on it.",
     movement:"Begin to build", movementWhy:"The position is stable enough to take slightly larger steps. The work is no longer only protection — it is genuine construction.",
-    practice:"Choose one area where you have been holding back — waiting until you felt ready, or protecting the recovery rather than building on it. Take one genuine step into that area today. Not a full commitment — a genuine beginning.",
+    practice:"Choose one area where you have been holding back — waiting until you felt ready, or protecting the recovery rather than building on it. Take one genuine step into that area today. Not a full commitment — a genuine beginning. Notice whether it holds.",
     reflection:"What have you been waiting to feel ready for — and are you ready now?",
   },
 
-  // ── TRAUMA → ANGUISH ──────────────────────────────────────────────────
+  // ── TRAUMA ZONE ───────────────────────────────────────────────────────
   anguish:{
-    name:"Anguish", label:"Deep difficulty", color:"#6b3030", crisis:true,
-    meaning:"You are in a place where pain is acute, the usual pathways feel blocked, and each attempt to move has been costing more than it restores. This is not weakness — it is the experience of someone carrying more than the available capacity can sustain.",
-    why:"When both capacity and hope are very low, the usual mechanisms for recovery become unavailable. What keeps people here is not failure — it is the genuine absence of the conditions that make movement possible.",
-    drivingForce:"The gap between effort and result. When every attempt costs more than it gives back, the system begins to anticipate failure before it happens. This is not pessimism — it is a learned response to a real pattern.",
-    coreNeed:"Safety", coreNeedWhy:"Before movement, safety. The question is not what to do next — it is what would make this moment feel even slightly safer.",
-    movement:"Safety first", movementWhy:"Slower, more patient — beginning with what feels safe rather than what feels productive.",
-    practice:"Identify one small thing that feels genuinely safe right now. A specific room. A specific person. A physical sensation — the weight of your feet, the warmth of a drink. Stay with it for ten minutes without trying to solve anything. You are not failing to move. You are finding the ground.",
+    name:"Anguish", label:"Trauma Zone", color:"#6b3030", crisis:true,
+    meaning:"You are in a place where pain is acute, the usual pathways feel blocked, and each attempt to move has been costing more than it restores. This is not weakness — it is the experience of someone carrying more than the available capacity can currently sustain.",
+    why:"When both the Resilience Reserve and Hope are very low, the usual mechanisms for recovery become unavailable. The gap between effort and result has become the dominant experience — every attempt costs more than it gives back, and the system has begun to anticipate failure before it happens.",
+    drivingForce:"Allostatic load exceeding available capacity. The cumulative cost of navigating all active difficulties simultaneously has consumed the reserve faster than it can be restored. This is not a character failing — it is a real resource gap. What keeps people here is the genuine absence of the conditions that make movement possible, not the absence of effort.",
+    coreNeed:"Safety", coreNeedWhy:"Before movement, safety. The question is not what to do next — it is what would make this moment feel even slightly safer. Safety is the ground from which everything else becomes possible.",
+    movement:"Safety first", movementWhy:"Slower, more patient — beginning with what feels safe rather than what feels productive. One small safe thing is more valuable than ten ambitious steps from this position.",
+    practice:"Identify one small thing that feels genuinely safe right now. A specific room. A specific person. A physical sensation — the weight of your feet on the floor, the warmth of a drink, a blanket. Stay with it for ten minutes without trying to solve anything. You are not failing to move. You are finding the ground.",
     reflection:"What is one thing — however small — that feels safe or familiar right now?",
   },
 
-  // ── DESPAIR ───────────────────────────────────────────────────────────
+  // ── FLOOR ─────────────────────────────────────────────────────────────
   despair:{
     name:"Despair", label:"The floor", color:"#2a1f1f", crisis:true,
-    meaning:"You are at the most serious position on the map. Both capacity and hope have collapsed. This is real and it is serious. You do not have to carry this alone.",
-    why:"The combination of depleted capacity, absent hope, and the weight of what you are carrying has brought you to the floor. This is not where you stay — but it requires care, not effort.",
-    drivingForce:"When both capacity and hope collapse simultaneously, the usual mechanisms for recovery become unavailable. This is not weakness — it is the absence of the conditions that make movement possible.",
-    coreNeed:"Contact", coreNeedWhy:"The most fundamental need here is not to be alone with this. Before anything else — one person who knows.",
+    meaning:"You are at the most serious position on this map. Both the Resilience Reserve and Hope have collapsed. This is real and it is serious. You do not have to carry this alone.",
+    why:"The combination of depleted capacity and absent Hope has brought you to the floor. This is not where you stay — but it requires care from outside, not effort from within. External restoration is what the floor requires.",
+    drivingForce:"Terminal allostatic failure — available capacity has reached minimum and all restoration channels are blocked. This is not weakness. It is the genuine absence of the conditions that make self-directed movement possible. The first movement must come from outside.",
+    coreNeed:"Contact", coreNeedWhy:"The most fundamental need here is not to be alone with this. Before anything else — one person who knows. Contact is the only available first step.",
     movement:"Reach out", movementWhy:"The first and only step available from the floor is contact with another person. Not fixing, not explaining — just not being alone with this.",
     practice:"Right now, identify one person you could contact. A message that says 'I'm struggling and I needed to tell someone' is enough. If there is no one immediately available — in Australia, Lifeline is 13 11 14, available any time.",
     reflection:"Who is one person who would want to know you are struggling right now?",
   },
 
-  // ── STASIS ────────────────────────────────────────────────────────────
-  ambivalence:{
-    name:"Ambivalence", label:"Still", color:"#4a5a6a",
-    meaning:"You are holding two equally important directions and unable to move toward either. This is not indecision — both things genuinely matter, which is exactly why movement is difficult.",
-    why:"Genuine conflict between two things of real value. Choosing one direction means losing something from the other, and both losses feel unacceptable.",
-    drivingForce:"Ambivalence is driven by the equal weight of two competing goods. Unlike stagnation — which avoids movement — ambivalence cannot choose between movements because both directions are genuinely important.",
-    coreNeed:"Clarity without pressure", coreNeedWhy:"The need is to name both directions fully before being asked to choose between them. Premature resolution collapses what needs to stay open a little longer.",
-    movement:"Name both sides", movementWhy:"Before resolution, clarity. Give each direction its full weight in words before choosing.",
-    practice:"Write one full paragraph about each direction you are being pulled toward. Make each one as fully true as you can. Then read them both back as if someone else wrote them. You do not need to decide anything today — the practice is simply to give each direction its full weight before the mind reduces one of them to make the choice easier.",
-    reflection:"Which direction would future-you be more at peace with — in five years?",
+  // ── STASIS TERRITORY ──────────────────────────────────────────────────
+  detached:{
+    name:"Detached", label:"Stasis Territory", color:"#4a5a6a",
+    meaning:"Your capacity for genuine connection is intact — but you are not currently in contact. Not wounded, not closed in the way the Shelter Territory closes. Simply not engaged. The Relational channel is available but not in use.",
+    why:"The Relational channel is present but not active. This is not a wound — the capacity for genuine relationship is there. Habit, circumstance, or low activation has meant it is simply not currently running. The engine is undamaged. It is not running.",
+    drivingForce:"Alienation — the progressive process of becoming foreign to the relational world through disuse rather than damage. Unlike Lost Connection, where the channel is wounded, Detachment is the condition of an intact channel that has simply stopped being used. The Relational anti-medicine operating below conscious attention.",
+    coreNeed:"One genuine point of contact", coreNeedWhy:"Not reconciliation, not effort — just one genuine moment of connection. The capacity is there. It requires activation, not repair.",
+    movement:"Make one genuine contact", movementWhy:"The channel is intact. One real exchange — not performed, not obligatory — is often enough to remind the system what connection produces.",
+    practice:"Reach out to one person today in a way that is genuinely meant rather than obligatory. Not to catch up, not to solve anything — just to make contact. A message that says something true. A conversation where you are actually present. Notice whether anything moves.",
+    reflection:"Who is one person that, if you reached out to them today, you would actually be glad you did?",
   },
 
-  boredom:{
-    name:"Boredom", displayName:"Adrift", label:"Still", color:"#4a5a6a",
-    meaning:"Things are okay — but flat. Not difficult, not joyful. The specific absence of anything that genuinely lights you up. This is the shadow of delight: not the loss of connection or direction, but the particular absence of pleasure, wonder, or gratitude in the day to day.",
-    why:"Boredom at this level is not trivial restlessness. It is the signal that the capacity for genuine enjoyment and appreciation has gone quiet. Everything functions, but nothing genuinely sparks.",
-    drivingForce:"The absence of genuine pleasure rather than the presence of difficulty. What keeps people here is often habit and routine that is functional but not nourishing — the days are full but not alive.",
-    coreNeed:"One moment of genuine delight", coreNeedWhy:"Not manufactured positivity — one small thing that is genuinely, specifically enjoyable. The channel needs to be opened, not forced.",
-    movement:"Find one thing that genuinely delights you", movementWhy:"Not something you think should make you happy — something that actually does, however small or unexpected.",
-    practice:"Today, look for one moment of genuine delight — not manufactured, not performed. It might be small: the quality of light, a piece of music, a conversation that sparks something, something that makes you genuinely laugh. When you find it, stay with it for a few minutes rather than moving past it.",
-    reflection:"What is something — however small or unexpected — that has genuinely delighted you recently?",
+  fallow:{
+    name:"Dormancy", displayName:"Adrift", label:"Stasis Territory", color:"#4a5a6a",
+    meaning:"Your Agency channel is capable but not currently producing. Like a field left fallow — the capacity is present, activation is absent. Not damaged, not in crisis. Simply not generating. The days are functional but not alive.",
+    why:"The Agency channel has not been closed by a wound — it has simply stopped being used. What keeps people here is habit and routine that is functional but not nourishing. The channel is capable of producing. Nothing is currently planted in it.",
+    drivingForce:"Decay — the Agency anti-medicine operating through absence rather than attack. Not an active force working against you, but the slow net-negative of a channel available but unused. Restlessness is the signal that the Agency channel needs to produce — when that signal is missed or suppressed repeatedly, Dormancy deepens.",
+    coreNeed:"One small activation", coreNeedWhy:"Not ambition, not a plan — one genuinely small thing that requires the Agency channel to open slightly. The capacity is present. It needs use, not repair.",
+    movement:"Find one thing that genuinely interests you", movementWhy:"Not something you think should interest you — something that actually does, however small or unexpected. The channel responds to genuine engagement, not performed effort.",
+    practice:"Today, look for one moment of genuine engagement — not productive in any external sense, not performed. It might be very small: a question you actually want answered, a task you find yourself doing with more care than required, something in the natural world that catches your attention. When you find it, stay with it rather than moving past it.",
+    reflection:"What is something — however small — that has genuinely caught your attention recently?",
   },
 
   stagnation:{
-    name:"Stagnation", displayName:"Stuck", label:"Still", color:"#4a5a6a",
-    meaning:"You have enough capacity and hope to move — but movement has stopped. The inertia has become a pattern. Something is in the way.",
-    why:"Avoidance with good capacity suggests something is blocking movement — not inability but reluctance. The capacity is present. Something is preventing the translation of it into action.",
-    drivingForce:"Often unacknowledged fear — of failure, of change, or of what movement might cost. The inertia is comfortable relative to the uncertainty of moving.",
-    coreNeed:"Understanding the resistance", coreNeedWhy:"The resistance is not an obstacle — it is information. Understanding it is the first step.",
-    movement:"Identify the resistance", movementWhy:"Before moving, understand what is stopping the movement.",
-    practice:"Take ten minutes and write answers to two questions separately. First: 'What would I do next if I were not afraid of anything?' Second: 'What am I actually afraid of?' Do not try to resolve the tension. Just name both honestly.",
-    reflection:"What would have to be true for you to take one step forward this week?",
+    name:"Stagnation", displayName:"Stuck", label:"Stasis Territory", color:"#4a5a6a",
+    meaning:"Your Experiential channel is available — but it is not animating. Wonder is present in principle but not producing movement. The capacity for genuine engagement with the world is there. Something is blocking it — not damage, but inertia.",
+    why:"The Experiential channel has not been closed by a wound — it has simply stopped being activated. What keeps people here is pattern and routine that has become the entire experiential landscape. Nothing new is arriving. Nothing familiar is surprising any more.",
+    drivingForce:"Cynicism — the Experiential anti-medicine. The internal pre-emptive closing against Wonder before it can arrive. Not a conscious choice — a learned response that protects against disappointment by eliminating the possibility of genuine engagement. Self-perpetuating: the more Cynicism closes the channel, the less Wonder arrives, which confirms the channel's closure as justified.",
+    coreNeed:"Something genuinely new or surprising", coreNeedWhy:"The Experiential channel responds to Surprise — the interruption of the pre-known pattern. Not entertainment, not distraction — something that genuinely breaks the expected.",
+    movement:"Interrupt one pattern deliberately", movementWhy:"Cynicism is broken by genuine Surprise — not by effort but by exposure to something that genuinely did not happen the way it was expected to.",
+    practice:"Change one thing today that is usually fixed — a route, a sequence, a response, a conversation. Not a large change. Something small enough to be genuinely done and different enough to produce a genuine, unscripted moment. Notice what happens in that gap between the expected and the actual.",
+    reflection:"What is something you have been avoiding because you expect it to disappoint — and what if it did not?",
   },
 
-  // ── ADVERSITY ─────────────────────────────────────────────────────────
+  // ── ADVERSITY TERRITORY ───────────────────────────────────────────────
   disconnection:{
-    name:"Disconnection", displayName:"Lost Connection", label:"Adversity", color:"#7a5a30",
-    meaning:"You are experiencing a separation from meaningful relationship — and avoiding engagement with it. The distance is extending the pain rather than protecting from it.",
-    why:"Relational wound met with avoidance. The instinct is to protect yourself from further hurt. But connection is also the pathway out of disconnection.",
-    drivingForce:"Protective avoidance. What keeps people here is that the protection feels necessary even when it is preventing the very thing that would help.",
-    coreNeed:"Low-stakes contact", coreNeedWhy:"Not reconciliation, not a difficult conversation — just one moment of genuine presence with one safe person.",
-    movement:"One low-stakes connection", movementWhy:"The smallest possible genuine connection. Not to fix anything. Just to not be entirely alone.",
-    practice:"Initiate one brief, low-pressure contact with one person today. A message that asks nothing. A brief conversation. No agenda. The goal is simply to let one genuine connection happen.",
-    reflection:"Is there one person you have been keeping at a distance who would welcome hearing from you?",
-  },
-
-  decline:{
-    name:"Decline", displayName:"Self-Doubt", label:"Adversity", color:"#7a5a30",
-    meaning:"You are experiencing the sense of moving backwards — losing ground or confidence that was previously present. Combined with shame, this can feel like confirmation of your worst fears about yourself.",
-    why:"A self-assessment wound combined with shame creates the experience of decline — not just struggling but diminishing. The difficulty feels like evidence of who you are rather than a description of where you are.",
-    drivingForce:"Shame combined with comparison — measuring current performance against a previous self and finding the gap unacceptable. The decline feels like a verdict rather than a position.",
-    coreNeed:"Separation of wound from identity", coreNeedWhy:"Decline is a position. It is not a verdict. The need is to distinguish between what is happening and what you are.",
-    movement:"Separate the wound from the person", movementWhy:"What you are experiencing is real — but it is not what you are.",
-    practice:"Write down one thing you were capable of a year ago that you are still capable of today. Not an achievement — a genuine capacity. Then write: 'The difficulty has not taken this.' Read it back to yourself.",
-    reflection:"What is one quality in yourself that this difficulty has not been able to take from you?",
+    name:"Disconnection", displayName:"Lost Connection", label:"Adversity Territory", color:"#7a5a30",
+    meaning:"Your Relational channel has been wounded — the bond with others has been damaged or lost. The capacity for genuine connection is not absent, but the wound means that connection currently costs more than it restores. You are in the territory where the medicine and the wound are in the same channel.",
+    why:"A Relational wound in the Adversity Territory means you are carrying the difficulty but not yet in the Healing crossing. The wound is present and being assessed. What is available here is building the capacity to turn toward it — not Healing yet, but preparation for the crossing.",
+    drivingForce:"Alienation deepening through avoidance — each time connection is avoided the wound is confirmed and the relational outcome space expands. The mechanism is self-reinforcing: the wound makes connection costly, avoidance of cost deepens the wound, which makes connection costlier. What breaks this is one low-stakes genuine contact — not reconciliation, just presence.",
+    coreNeed:"Low-stakes contact", coreNeedWhy:"Not reconciliation — just one moment of genuine presence with one safe person. The channel needs to be shown it is still possible, not demonstrated to be fixed.",
+    movement:"One low-stakes connection", movementWhy:"The smallest possible genuine connection. Not the difficult one — the safe one. One real moment of contact that costs less than it gives back.",
+    practice:"Initiate one brief, low-pressure contact with one person today. A message that asks nothing. A short conversation with someone safe. No agenda, no requirement to explain what you are carrying. The purpose is presence, not progress.",
+    reflection:"Is there one person you have been keeping at a distance who would welcome hearing from you — with no requirement attached?",
   },
 
   misery:{
-    name:"Misery", displayName:"Disheartened", label:"Adversity", color:"#7a5a30",
-    meaning:"You are experiencing sustained joylessness — not an acute sadness but a chronic absence of delight. The lights are down. Things that used to give pleasure no longer do. This is one of the most common and least visible forms of difficulty.",
-    why:"Misery is not depression necessarily — it is the sustained loss of the capacity for genuine enjoyment. It often arrives gradually and is therefore normalised before it is named.",
-    drivingForce:"The depletion of the enjoyment channel over time. What keeps people here is often the absence of even small genuine pleasures — and the habit of moving through days without noticing what is missing.",
-    coreNeed:"One genuine pleasure", coreNeedWhy:"Not joy — just one small thing that is genuinely pleasant. The capacity is not gone — it needs to be reactivated through small genuine acts.",
-    movement:"Name one small thing", movementWhy:"Not joy — just something that does not hurt. Something that is genuinely, specifically yours.",
-    practice:"Do one small thing today that is genuinely yours — not performed for anyone else, not productive in any external sense. Something you actually want to do. Make something. Read something you actually want to read. Call someone you genuinely like. The size does not matter — the genuineness does.",
-    reflection:"What is the smallest thing that used to give you even a flicker of something good?",
+    name:"Disenchantment", displayName:"Disheartened", label:"Adversity Territory", color:"#7a5a30",
+    meaning:"Your Experiential channel has been wounded — the capacity for genuine receptive engagement with the world has been attacked. Not the absence of joy as a passing mood, but the structural dimming of the channel through which joy arrives. The world has become flatter.",
+    why:"An Experiential wound in the Adversity Territory means the channel is carrying damage. Wonder — the medicine — is what this wound needs. But in the Adversity Territory the channel is building capacity to turn toward the wound rather than Healing yet. What is available here is small genuine acts of engagement rather than full restoration.",
+    drivingForce:"Suffering — the external downward Experiential force — combined with Cynicism closing the channel against the possibility of genuine engagement. The wound has taught the Experiential channel to expect disappointment. Each small closure against potential joy confirms the teaching. The channel is not permanently closed — it has learned to pre-empt rather than receive.",
+    coreNeed:"One small genuine thing", coreNeedWhy:"Not joy manufactured, not positivity performed — one small thing that produces a genuine response, however faint. The channel needs evidence that it is still capable of receiving, not evidence that everything is fine.",
+    movement:"One small act of genuine engagement", movementWhy:"Not joy — just something real. Something that belongs specifically to you and produces a genuine, unperformed response. Small genuine acts accumulate.",
+    practice:"Do one small thing today that is genuinely yours — not productive, not obligatory. Something you actually want to engage with, however briefly. Making something with your hands. Reading something you actually want to read. A piece of music that has meant something to you. Sitting somewhere you genuinely like. Notice whether anything stirs.",
+    reflection:"What is the smallest thing that used to give you even a flicker of genuine engagement — and when did you last let it?",
   },
 
-  // ── SHELTER ───────────────────────────────────────────────────────────
+  effacing:{
+    name:"Effacement", displayName:"Self-Doubt", label:"Adversity Territory", color:"#7a5a30",
+    meaning:"Your Agency channel has been wounded — the capacity to act, produce outcomes, and move forward has been eroded through accumulated damaging self-evaluation. Not passive slowing. Active erasure. Each difficulty has added to a case being built against you by your own mind.",
+    why:"An Agency wound in the Adversity Territory means Effacement is the active condition. The wound is present and the channel is building capacity to turn toward it. What is available here is not full recovery but the separation of the wound from identity — which is the first movement that makes Healing possible.",
+    drivingForce:"Decay — the Agency anti-medicine — operating through Shame as misattribution of Guilt. Guilt says 'I did something wrong' — processable, correctable, action-level. Shame says 'I am wrong' — identity-level, unbounded, no corrective action available. The intervention is attribution correction: returning the consequence certainty to the action where it belongs, away from identity where it has been misplaced.",
+    coreNeed:"Separation of wound from identity", coreNeedWhy:"Effacement is a position. It is not a verdict. The most important thing is to separate what is happening from what you are. The wound is real. The wound is not you.",
+    movement:"Separate the wound from the person", movementWhy:"What you are experiencing is a condition — not a conclusion. The difficulty has not taken everything. Naming what remains is the first movement.",
+    practice:"Write down one thing you were capable of a year ago that you are still capable of today. Not an achievement — a genuine capacity. A quality. A way of being in the world. Then write: 'The difficulty has not taken this.' Read it back as a statement of fact, not reassurance.",
+    reflection:"What is one quality in yourself that this difficulty has not been able to take from you?",
+  },
+
+  // ── SHELTER TERRITORY ─────────────────────────────────────────────────
   sealed:{
-    name:"Sealed", label:"Protective withdrawal", color:"#4a3d5c",
-    meaning:"You have closed off. Nothing in, nothing out. This is not failure — it is an intelligent response to a situation where everything felt unsafe. Protection is a tent, not a bunker — the goal is to keep one small thread open.",
-    why:"Avoidance combined with low capacity has activated the most protective response available. You are conserving what you have.",
-    drivingForce:"Conservation. When capacity is depleted and the environment feels threatening, the system closes to prevent further loss. What keeps people here is that opening even slightly feels like risk.",
-    coreNeed:"Permission to rest", coreNeedWhy:"The need is not to be told to open up — it is to have the closing acknowledged as valid while keeping the smallest thread available.",
-    movement:"The smallest opening", movementWhy:"Not exposure — just a crack. One small thing that is not entirely closed.",
-    practice:"Choose one thing — small, low-risk, familiar — that you can do today that is not entirely about protection. Five minutes is enough. Sitting outside without headphones. One page of something you used to enjoy. Letting one piece of music play. The goal is not to feel better — just to let one small thing in.",
-    reflection:"What is the smallest opening you could make right now without feeling unsafe?",
+    name:"Sealed", displayName:"Closed", label:"Shelter Territory", color:"#4a3d5c",
+    meaning:"The Relational channel has closed. Nothing in, nothing out. This is an intelligent Shelter response — the system conserving what remains when the relational environment has become too costly to engage with. A tent, not a permanent structure.",
+    why:"When the Relational channel is wounded and capacity drops below the Healing threshold, Shelter activates automatically. Closure is not a choice — it is conservation. The system is protecting what remains from further loss.",
+    drivingForce:"Alienation at Shelter depth — the Relational channel closing to prevent further depletion rather than because the capacity for connection is gone. What keeps people here is that the cost of opening exceeds the available reserve. The closure is accurate to the available resource, not to the permanent state of the channel.",
+    coreNeed:"Permission to rest in the closure", coreNeedWhy:"The need is not to be told to open up — it is to have the closure acknowledged as intelligent while keeping the smallest thread available. One thread, not a door.",
+    movement:"The smallest possible opening", movementWhy:"Not exposure — just a crack. One small thing that is not entirely closed. The channel does not need to be forced open. It needs to be shown that one small opening is survivable.",
+    practice:"Choose one small thing today that is not entirely about protection — something that allows the smallest possible contact with the world outside the closure. Five minutes outside without headphones. One brief message to one safe person. One page of something you used to enjoy. Small and survivable.",
+    reflection:"What is the smallest opening you could make right now — that would not feel unsafe?",
   },
 
-  numbing:{
-    name:"Numbing", label:"Protective withdrawal", color:"#4a3d5c",
-    meaning:"You are managing the signal — turning down the emotional volume to a level you can tolerate. This is a survival strategy, not a character flaw. The question is what is being missed while the volume is down.",
-    why:"Distraction with low capacity is the nervous system protecting itself from overwhelm. It is not avoidance of the problem — it is management of the cost.",
-    drivingForce:"Cost management. The nervous system calculates that full feeling is currently too expensive and reduces the signal. The cost is that genuine restoration requires some feeling to be present.",
-    coreNeed:"Gentle noticing", coreNeedWhy:"Not to feel everything at once — just to create one small gap where something real can be observed without being overwhelming.",
-    movement:"Reduce one numbing behaviour", movementWhy:"Not all at once — just one. Create a small gap where something real can be noticed.",
-    practice:"Today, replace one numbing activity with something quieter — not more emotionally demanding, just less actively distracting. A walk without earphones instead of watching something. Sitting with tea instead of scrolling. Five minutes looking out a window instead of filling the silence.",
-    reflection:"What are you most afraid of feeling if the numbing stopped?",
+  deflection:{
+    name:"Guarded", label:"Shelter Territory", color:"#4a3d5c",
+    meaning:"The Agency channel's Shelter response — redirecting contact with the wound rather than facing it directly. Not consumed by the difficulty, not collapsed under it, but not through it either. Each time the wound presents, something turns aside. It is being managed at arm's length.",
+    why:"When the Agency channel is wounded and capacity is below the Healing threshold, Guarded is the intelligent Shelter response — keeping the wound at manageable distance rather than being overwhelmed by direct engagement. The wound is real. Facing it at full depth would cost more than is currently available.",
+    drivingForce:"Decay operating through protective redirection. The wound is present and the system knows it — but each approach is deflected before contact is made. The position is sustainable but not restorative. Guarded keeps the cost manageable but also keeps the wound in place, unaddressed.",
+    coreNeed:"One moment of genuine contact with the wound", coreNeedWhy:"Not full confrontation — just one small, contained moment of genuine acknowledgement. The wound does not need to be solved. It needs to be seen, briefly, without the usual turning aside.",
+    movement:"One small step toward rather than away", movementWhy:"Not resolution — just one moment of not deflecting. The wound does not need to be fully faced today. It needs to be approached once, briefly, and survived.",
+    practice:"Choose one small aspect of what you are managing — not the whole thing, just one edge of it — and spend five minutes staying with it instead of redirecting. Write about it, or sit with it without doing anything else. You do not need to solve anything. The practice is staying rather than turning aside.",
+    reflection:"What is the thing you keep almost thinking about — and then finding something else to do instead?",
   },
 
   embattled:{
-    name:"Embattled", label:"Protective withdrawal", color:"#4a3d5c",
-    meaning:"You are fighting — holding ground against something that feels threatening. This is active, exhausting, and consuming most of your available energy. The anger is real and the fight may be entirely justified.",
-    why:"Resistance combined with low capacity produces the experience of being under attack and needing to defend. Fighting is protection.",
-    drivingForce:"Threat perception. Whether or not the threat is external, the nervous system is in a sustained state of defence. What keeps people here is that stopping the fight feels like losing.",
-    coreNeed:"Rest without defeat", coreNeedWhy:"The fighter needs to stop — but stopping feels like losing. The need is for a pause that is not surrender.",
-    movement:"Rest without surrender", movementWhy:"Not giving up — pausing. The fighter who never rests loses.",
+    name:"Embattled", label:"Shelter Territory", color:"#4a3d5c",
+    meaning:"The Experiential channel's Shelter response — active defence against an external force that has closed the channel to genuine engagement. Fighting is consuming most of the available energy. The anger is real. The cost is the capacity that would otherwise be available for recovery.",
+    why:"When the Experiential channel is wounded and capacity drops below the Healing threshold, Embattled is the Shelter response — the channel mobilising against the external force rather than receiving from it. This is structurally correct when a genuine external threat exists. The cost is that fighting consumes the energy the channel needs to restore.",
+    drivingForce:"Suffering — the external Experiential downward force — producing Embattled as the defensive response when no other path is visible. What keeps people here is that stopping the fight genuinely feels like losing — and sometimes it would be.",
+    coreNeed:"Rest without defeat", coreNeedWhy:"The fighter needs to stop — but stopping feels like losing. The need is for a defined pause that is not surrender. Rest is tactical here, not capitulation.",
+    movement:"Rest without surrender", movementWhy:"Not giving up — pausing. A fighter who never rests loses. The pause is what makes the return possible.",
     practice:"Set aside a defined period today — thirty minutes if possible — where you are not fighting anything. Tell yourself explicitly that the fight will still be there when you return. Do something that requires your body without requiring your mind: a walk, physical work, cooking. Rest is tactical, not defeat.",
-    reflection:"What would it mean to rest without it being defeat?",
+    reflection:"What would it mean to rest — without it being defeat?",
   },
 
-  // ── HEALING ───────────────────────────────────────────────────────────
+  // ── HEALING TERRITORY ─────────────────────────────────────────────────
   grief:{
-    name:"Grief", label:"Recovery", color:"#6b5a3a",
-    meaning:"You are facing a significant loss and allowing yourself to experience it. This is not weakness — it is the natural and necessary response to something real having been lost. Grief is the work of integration.",
-    why:"Relational loss met with the courage to face it directly, with enough capacity to sustain the process. You are in the right place doing the right thing. It simply costs.",
-    drivingForce:"The gap between what was and what is. The mind continues to reach for what is no longer there and encounters absence. The process has its own timeline and cannot be shortened by effort.",
-    coreNeed:"Witnessing", coreNeedWhy:"Grief needs to be seen. Not solved, not explained away — witnessed. By yourself, and if possible by one other person.",
-    movement:"Stay with it", movementWhy:"Grief cannot be rushed or bypassed. The only way through is through.",
-    practice:"Identify one memory, one object, or one ritual that honours what was lost. Spend time with it today without trying to resolve anything. The purpose is presence, not progress.",
+    name:"Grief", label:"Healing Territory", color:"#6b5a3a",
+    meaning:"You are in the Relational channel's Healing crossing — the natural and necessary process of integrating genuine loss. This is not weakness. It is the work itself. Grief is what genuine Healing of a Relational wound looks and feels like from the inside.",
+    why:"A Relational wound met with the courage to face it directly, with sufficient capacity to sustain the process. You are in the right place doing the right thing. The Grief process is the treatment — not a sign that something has gone wrong, but the sign that something is being addressed.",
+    drivingForce:"The Relational wound being treated by the medicine of Connection — through Witnessing, accompaniment, and the processing of loss into something that can be integrated. The gap between what was and what is. The mind continues to reach for what is no longer there and encounters absence. The process has its own timeline and cannot be shortened by effort — only accompanied.",
+    coreNeed:"Witnessing", coreNeedWhy:"Grief needs to be seen. Not solved, not explained away, not accelerated — witnessed. The presence of one genuine witness is one of the most restorative acts available at this position.",
+    movement:"Stay with it", movementWhy:"Grief cannot be rushed or bypassed. The only way through is through. Acceptance is the internal completion of Grief — the first orientation outward after it completes is Reaching.",
+    practice:"Identify one memory, one object, or one ritual that honours what was lost. Spend time with it today without trying to resolve anything. The purpose is presence, not progress. If one person can be with you in this — invite them.",
     reflection:"What do you most want to carry with you from what was lost?",
   },
 
   sanctuary:{
-    name:"Sanctuary", label:"Recovery", color:"#6b5a3a",
-    meaning:"You have withdrawn into a protected space. This is deliberate and intelligent — the creation of conditions where recovery is possible. Not hiding. Tending.",
-    why:"Withdrawal with sufficient capacity suggests a conscious choice to protect your energy and create space. That choice is sound.",
-    drivingForce:"Self-created protection. The driving force is the recognition that the environment outside is currently too costly and that a different environment is needed.",
-    coreNeed:"Protected space", coreNeedWhy:"The sanctuary itself is the need. Protecting its quality is more important right now than anything that might happen inside it.",
-    movement:"Protect the space", movementWhy:"Maintain the quality of the sanctuary.",
-    practice:"Identify one thing currently threatening the quality of your sanctuary — a demand, a relationship, a habit, an obligation — and reduce your exposure to it today. This might mean declining something. Turning off a notification. Setting a boundary around one hour of time.",
+    name:"Sanctuary", label:"Healing Territory", color:"#6b5a3a",
+    meaning:"You are in the Experiential channel's Healing crossing — a protected space created deliberately where recovery of the capacity for genuine engagement becomes possible. Not hiding. Tending. The conditions for Healing are being created.",
+    why:"An Experiential wound requires the Healing crossing of Sanctuary — withdrawal from the sources of cost and the creation of conditions where the channel can begin to restore. The withdrawal is not avoidance; it is the specific medicine this wound requires.",
+    drivingForce:"Wonder operating at Healing depth — not the full generative force of Flourishing, but the beginning of genuine receptive engagement returning within a protected environment. The Experiential channel restoring its capacity to receive before it is asked to engage with the world that wounded it.",
+    coreNeed:"Protected space", coreNeedWhy:"The sanctuary itself is the need. Protecting its quality is more important right now than anything that happens inside it. The space is the treatment.",
+    movement:"Protect the space", movementWhy:"Maintain the quality of the sanctuary. What threatens it is the cost. What maintains it is the reduction of exposure to whatever is draining the Experiential channel.",
+    practice:"Identify one thing currently threatening the quality of your sanctuary — a demand, a relationship, a notification, an obligation — and reduce your exposure to it today. This might mean declining something, turning something off, or simply setting aside one hour that belongs to the sanctuary.",
     reflection:"What does this space give you that you could not access elsewhere?",
   },
 
   hibernation:{
-    name:"Hibernation", label:"Recovery", color:"#6b5a3a",
-    meaning:"You are in deep rest. Drawing all available energy inward for restoration. Like winter — not absence of life but preparation for its return.",
-    why:"The decision to conserve energy is intelligent given your circumstances. You are not giving up. You are creating the conditions for what comes next.",
-    drivingForce:"Depletion. The system has shifted into recovery mode. What keeps people here is that the restoration process takes time — and the pressure to return to function often arrives before the restoration is complete.",
-    coreNeed:"Genuine restoration", coreNeedWhy:"Not distraction, not productivity — something that actually refills rather than just passes time.",
-    movement:"Tend the rest", movementWhy:"Rest is not passive. It is active tending of the conditions for recovery.",
+    name:"Hibernation", label:"Healing Territory", color:"#6b5a3a",
+    meaning:"You are in the Agency channel's Healing crossing — deep inward rest, drawing all available energy toward the restoration of capacity, self-worth, and forward motion. Like winter: not absence of life, but preparation for its return.",
+    why:"An Agency wound requires the Healing crossing of Hibernation — the channel withdrawing from output demands in order to restore the capacity that Effacement has eroded. The rest is not giving up. It is the specific medicine this wound requires.",
+    drivingForce:"Growth operating at Healing depth — the Agency channel restoring its capacity through genuine rest before it is asked to produce. The pressure to return to function often arrives before the restoration is complete. What keeps people here longer than necessary is the external and internal pressure to demonstrate recovery through output — which is precisely what the Hibernation crossing cannot yet sustain.",
+    coreNeed:"Genuine restoration", coreNeedWhy:"Not distraction, not productivity — something that actually refills the Agency channel. Genuine restoration is distinct from numbing: it produces something at the end. Numbing produces absence.",
+    movement:"Tend the rest", movementWhy:"Rest is not passive at this position. It is active tending of the conditions for recovery. What is genuinely restorative — as distinct from what merely passes time — is the question.",
     practice:"Choose one thing today that genuinely restores you — distinct from what merely distracts you. Sleep without guilt. Time in nature. The company of one person who requires nothing of you. A meal cooked slowly. Physical warmth. Do it without apologising for it.",
-    reflection:"What does genuine restoration feel like for you — distinct from numbing or distraction?",
+    reflection:"What does genuine restoration feel like for you — as distinct from numbing or distraction?",
   },
 };
+
 
 const amber="#c8892a";
 const S={
