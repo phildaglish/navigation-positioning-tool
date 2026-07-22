@@ -87,14 +87,14 @@ function calculatePosition(wound, response, capacity) {
   }
 
   // ── SELF WOUND — Growth/Agency path ──
-  // Reachable: Flourishing (via opening), Fallow (Dormancy), Effacing, Hibernation, Deflection, Anguish, Despair
+  // Reachable: Flourishing (via opening), Dormancy (Adrift), Effacing, Hibernation, Deflection, Anguish, Despair
   if (wound==="self") {
     if (response==="numbing") return "deflection";
     if (response==="conserving") return "hibernation";
-    if (response==="avoiding" && tH && hH) return "fallow";
+    if (response==="avoiding" && tH && hH) return "dormancy";
     if (response==="avoiding") return "effacing";
     if (sH) return "effacing";
-    if (tH && hH) return "fallow";
+    if (tH && hH) return "dormancy";
     return "effacing";
   }
 
@@ -193,7 +193,7 @@ const POSITIONS = {
     reflection:"Who is one person that, if you reached out to them today, you would actually be glad you did?",
   },
 
-  fallow:{
+  dormancy:{
     name:"Dormancy", displayName:"Adrift", label:"Stasis Territory", color:"#4a5a6a",
     meaning:"Your Agency channel is capable but not currently producing. Like a field left fallow — the capacity is present, activation is absent. Not damaged, not in crisis. Simply not generating. The days are functional but not alive.",
     why:"The Agency channel has not been closed by a wound — it has simply stopped being used. What keeps people here is habit and routine that is functional but not nourishing. The channel is capable of producing. Nothing is currently planted in it.",
