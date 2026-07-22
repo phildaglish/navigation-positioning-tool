@@ -85,26 +85,26 @@ function calculatePosition(wound, response, capacity) {
     return "disconnection";
   }
 
-  // ── SELF WOUND — Growth path ──
-  // Reachable: Flourishing (via opening), Stagnation, Effacing, Hibernation, Deflection, Anguish, Despair
+  // ── SELF WOUND — Growth/Agency path ──
+  // Reachable: Flourishing (via opening), Fallow (Dormancy), Effacing, Hibernation, Deflection, Anguish, Despair
   if (wound==="self") {
     if (response==="numbing") return "deflection";
     if (response==="conserving") return "hibernation";
-    if (response==="avoiding" && tH && hH) return "stagnation";
+    if (response==="avoiding" && tH && hH) return "fallow";
     if (response==="avoiding") return "effacing";
     if (sH) return "effacing";
-    if (tH && hH) return "stagnation";
+    if (tH && hH) return "fallow";
     return "effacing";
   }
 
-  // ── ENVIRONMENTAL WOUND — Delight path ──
-  // Reachable: Flourishing (via opening), Fallow, Misery, Sanctuary, Embattled, Anguish, Despair
+  // ── ENVIRONMENTAL WOUND — Delight/Experiential path ──
+  // Reachable: Flourishing (via opening), Stagnation, Misery, Sanctuary, Embattled, Anguish, Despair
   if (wound==="environmental") {
     if (response==="fighting" && tL) return "embattled";
     if (response==="fighting") return "embattled";
     if (response==="withdrawing") return "sanctuary";
     if (response==="conserving") return "sanctuary";
-    if (tH && hH) return "fallow";
+    if (tH && hH) return "stagnation";
     return "misery";
   }
 
