@@ -16,6 +16,7 @@ const GLOSSARY = {
   "Guarded":"The Shelter response of the Agency channel — redirecting contact with the wound rather than facing it directly. Not consumed by the difficulty, not collapsed, but not through it. The wound is being managed at arm's length.",
   "Embattled":"The Shelter response of the Experiential channel — active defence against an external force consuming most available energy. The fight is real. The cost is the capacity that would otherwise be available for recovery.",
   "Grief":"The Healing response of the Relational channel. The natural and necessary process of integrating genuine loss. Not a disorder — the work itself. It has its own timeline and cannot be shortened by effort.",
+  "Honouring":"The Healing response of the Relational channel. The natural and necessary process of integrating genuine loss. Not a disorder — the work itself. It has its own timeline and cannot be shortened by effort.",
   "Sanctuary":"The Healing response of the Experiential channel. A protected space created deliberately — not hiding, but creating the conditions where recovery of the Experiential wound becomes possible.",
   "Hibernation":"The Healing response of the Agency channel. Deep inward rest — all available energy drawn toward restoration of capacity and self-worth. Like winter: preparation for return, not absence of life.",
   "Capacity to deal with this":"The Resilience Reserve available right now — after accounting for everything already committed to navigating all currently active difficulties simultaneously. Available capacity is often significantly less than total capacity.",
@@ -24,7 +25,7 @@ const GLOSSARY = {
   "Certainty":"Understanding of what is happening and what to do next. Uncertainty consumes committed capacity — naming certainties, however small, releases it.",
   "Shame":"Guilt misattributed from action to identity. Guilt says 'I did something wrong' — processable, correctable. Shame says 'I am wrong' — identity-level, unbounded, with no corrective action available. The intervention is attribution correction, not self-improvement.",
   "Driving force":"The underlying force or mechanism determining why a person is in their current position and what would need to change for movement to become possible.",
-  "Witnessing":"Being genuinely seen without being fixed, advised, or assessed. One of the most restorative acts available — particularly in Grief and Anguish.",
+  "Witnessing":"Being genuinely seen without being fixed, advised, or assessed. One of the most restorative acts available — particularly in Honouring and Anguish.",
 };
 
 function Term({ term, children, onOpen }) {
@@ -284,12 +285,12 @@ const POSITIONS = {
 
   // ── HEALING TERRITORY ─────────────────────────────────────────────────
   grief:{
-    name:"Grief", label:"Healing Territory", color:"#6b5a3a",
-    meaning:"You are in the Relational channel's Healing crossing — the natural and necessary process of integrating genuine loss. This is not weakness. It is the work itself. Grief is what genuine Healing of a Relational wound looks and feels like from the inside.",
-    why:"A Relational wound met with the courage to face it directly, with sufficient capacity to sustain the process. You are in the right place doing the right thing. The Grief process is the treatment — not a sign that something has gone wrong, but the sign that something is being addressed.",
+    name:"Grief", displayName:"Honouring", label:"Healing Territory", color:"#6b5a3a",
+    meaning:"You are in the Relational channel's Healing crossing — the natural and necessary process of integrating genuine loss. This is not weakness. It is the work itself. Honouring is what genuine Healing of a Relational wound looks and feels like from the inside.",
+    why:"A Relational wound met with the courage to face it directly, with sufficient capacity to sustain the process. You are in the right place doing the right thing. The Honouring process is the treatment — not a sign that something has gone wrong, but the sign that something is being addressed.",
     drivingForce:"The Relational wound being treated by the medicine of Connection — through Witnessing, accompaniment, and the processing of loss into something that can be integrated. The gap between what was and what is. The mind continues to reach for what is no longer there and encounters absence. The process has its own timeline and cannot be shortened by effort — only accompanied.",
-    coreNeed:"Witnessing", coreNeedWhy:"Grief needs to be seen. Not solved, not explained away, not accelerated — witnessed. The presence of one genuine witness is one of the most restorative acts available at this position.",
-    movement:"Stay with it", movementWhy:"Grief cannot be rushed or bypassed. The only way through is through. Acceptance is the internal completion of Grief — the first orientation outward after it completes is Reaching.",
+    coreNeed:"Witnessing", coreNeedWhy:"Honouring needs to be seen. Not solved, not explained away, not accelerated — witnessed. The presence of one genuine witness is one of the most restorative acts available at this position.",
+    movement:"Stay with it", movementWhy:"Honouring cannot be rushed or bypassed. The only way through is through. Acceptance is the internal completion of Honouring — the first orientation outward after it completes is Reaching.",
     practice:"Identify one memory, one object, or one ritual that honours what was lost. Spend time with it today without trying to resolve anything. The purpose is presence, not progress. If one person can be with you in this — invite them.",
     reflection:"What do you most want to carry with you from what was lost?",
   },
